@@ -28,7 +28,8 @@
 - [Application Screenshots](#-application-screenshots)
 - [Technology Stack](#-technology-stack)
 - [Prerequisites](#-prerequisites)
-- [Getting Started](#-getting-started)
+- [Build the Project from Scratch](#-build-the-project-from-scratch)
+- [Run the Existing Repository](#-run-the-existing-repository)
 - [Run on the Web](#-run-on-the-web)
 - [Run on a Mobile Device](#-run-on-a-mobile-device)
 - [Project Structure](#-project-structure)
@@ -89,36 +90,274 @@ Install the following before starting:
 
 > **Important:** run all npm and Expo commands from `Increment/`, where `package.json` and `package-lock.json` are located.
 
-## 🚀 Getting Started
+## 🧑‍🎓 Build the Project from Scratch
+
+This section is for a beginner starting with an empty folder. Follow the steps in order. You will create the Expo app, install navigation dependencies, add the screen files, and run the completed app.
+
+### Step 1: Install the tools
+
+Install **Node.js LTS** from [nodejs.org](https://nodejs.org/), then open a new PowerShell terminal and verify the installation:
+
+```powershell
+node --version
+npm --version
+```
+
+Install **Visual Studio Code** and the **Expo Go** app on your phone. Git is optional for this from-scratch path.
+
+### Step 2: Create the workspace and Expo app
+
+In PowerShell, choose a location for your projects and run:
+
+```powershell
+mkdir react-native-navigation-architecture
+cd .\react-native-navigation-architecture
+npx create-expo-app@latest Increment --template blank
+code .
+```
+
+If `code .` is not recognized, open Visual Studio Code and select **File > Open Folder**, then choose the `react-native-navigation-architecture` folder. The `Increment` folder is the Expo application root.
+
+### Step 3: Install the libraries
+
+Open the integrated terminal in Visual Studio Code. Change to `Increment/` and install the Expo-compatible versions of React Navigation and its native dependencies:
+
+```powershell
+cd .\Increment
+npx expo install @react-navigation/native @react-navigation/bottom-tabs @react-navigation/native-stack react-native-safe-area-context react-native-screens react-native-gesture-handler react-native-reanimated react-native-worklets expo-status-bar expo-asset react-dom react-native-web
+```
+
+The Expo template already provides React and React Native. The command also installs the status-bar package, Expo asset support, and the React Native Web packages.
+
+### Step 4: Create the source folders
+
+Return to the workspace root and create the application source folders:
+
+```powershell
+cd ..
+New-Item -ItemType Directory -Force .\navigation, .\screens | Out-Null
+```
+
+Your folder structure should now include:
+
+```text
+react-native-navigation-architecture/
+├── Increment/
+├── navigation/
+└── screens/
+```
+
+### Step 5: Configure Metro for the workspace
+
+The screens and navigation folder are siblings of `Increment/`, rather than children of it. Create or replace `Increment/metro.config.js` with:
+
+```js
+const path = require('node:path');
+const { getDefaultConfig } = require('expo/metro-config');
+
+const projectRoot = __dirname;
+const workspaceRoot = path.resolve(projectRoot, '..');
+const config = getDefaultConfig(projectRoot);
+
+config.watchFolders = [workspaceRoot];
+config.resolver.nodeModulesPaths = [path.resolve(projectRoot, 'node_modules')];
+config.resolver.disableHierarchicalLookup = true;
+
+module.exports = config;
+```
+
+This tells Metro to watch the workspace source folders and resolve packages from the Expo project's `node_modules`.
+
+When a step below says **Create** a file, use the Visual Studio Code Explorer: right-click the named folder, select **New File**, enter the exact path and filename, paste the code, and save with `Ctrl+S`. Among the files added or replaced in this guide, `App.js` and `metro.config.js` belong inside `Increment/`; the screen and navigation files belong in the repository-root folders.
+
+### Step 6: Create the tab navigator
+
+Create `navigation/MainTabs.js`:
+
+```js
+import React from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import WorkoutLogScreen from '../screens/WorkoutLogScreen';
+import RoutinesScreen from '../screens/RoutinesScreen';
+import ProfileScreen from '../screens/ProfileScreen';
+
+const Tab = createBottomTabNavigator();
+
+export default function MainTabs() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen
+        name="WorkoutLog"
+        component={WorkoutLogScreen}
+        options={{ title: 'Workout Log' }}
+      />
+      <Tab.Screen
+        name="Routines"
+        component={RoutinesScreen}
+        options={{ title: 'My Routines' }}
+      />
+      <Tab.Screen name="Profile" component={ProfileScreen} />
+    </Tab.Navigator>
+  );
+}
+```
+
+### Step 7: Create the screens
+
+Create `screens/WorkoutLogScreen.js`. This screen opens the exercise route and passes two parameters:
+
+```js
+import React from 'react';
+import { View, Text, Button } from 'react-native';
+
+export default function WorkoutLogScreen({ navigation }) {
+  return (
+    <View style={{ flex: 1, padding: 20, justifyContent: 'center' }}>
+      <Text style={{ fontSize: 22, fontWeight: 'bold' }}>Workout Log</Text>
+      <Button
+        title="View exercise"
+        onPress={() =>
+          navigation.navigate('ExerciseDetails', {
+            exerciseId: 12,
+            exerciseName: 'Squat',
+          })
+        }
+      />
+    </View>
+  );
+}
+```
+
+Create `screens/RoutinesScreen.js`:
+
+```js
+import React from 'react';
+import { View, Text } from 'react-native';
+
+export default function RoutinesScreen() {
+  return (
+    <View style={{ flex: 1, padding: 20 }}>
+      <Text>My routines</Text>
+    </View>
+  );
+}
+```
+
+Create `screens/ProfileScreen.js`:
+
+```js
+import React from 'react';
+import { View, Text } from 'react-native';
+
+export default function ProfileScreen() {
+  return (
+    <View style={{ flex: 1, padding: 20 }}>
+      <Text>My profile</Text>
+    </View>
+  );
+}
+```
+
+Create `screens/ExerciseDetailsScreen.js`. It reads the values passed by the Workout Log screen:
+
+```js
+import React from 'react';
+import { View, Text } from 'react-native';
+
+export default function ExerciseDetailsScreen({ route }) {
+  const exerciseId = route.params?.exerciseId;
+  const exerciseName = route.params?.exerciseName ?? 'Unnamed exercise';
+
+  return (
+    <View style={{ flex: 1, padding: 20 }}>
+      <Text style={{ fontSize: 22, fontWeight: 'bold' }}>{exerciseName}</Text>
+      <Text>Exercise ID: {exerciseId ?? 'Not provided'}</Text>
+    </View>
+  );
+}
+```
+
+### Step 8: Connect the screens in the root app
+
+Replace the contents of `Increment/App.js` with:
+
+```js
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { StatusBar } from 'expo-status-bar';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import ExerciseDetailsScreen from '../screens/ExerciseDetailsScreen';
+import MainTabs from '../navigation/MainTabs';
+
+const Stack = createNativeStackNavigator();
+
+export default function App() {
+  return (
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <StatusBar style="auto" />
+        <Stack.Navigator>
+          <Stack.Screen
+            name="MainTabs"
+            component={MainTabs}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="ExerciseDetails"
+            component={ExerciseDetailsScreen}
+            options={{ title: 'Exercise Details' }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
+  );
+}
+```
+
+The `NavigationContainer` must wrap the navigators. The stack registers `ExerciseDetails`, so the Workout Log button can open it.
+
+### Step 9: Start and test the app
+
+In the terminal, switch back to the Expo project and start the development server:
+
+```powershell
+cd .\Increment
+npx expo install --check
+npm start
+```
+
+Verify the following:
+
+1. The **Workout Log**, **My Routines**, and **Profile** tabs are visible.
+2. Select each tab and confirm its screen appears.
+3. Return to **Workout Log** and select **View exercise**.
+4. Confirm that **Exercise Details** shows `Squat` and `Exercise ID: 12`.
+5. Use the back button to return to the tabs.
+
+Compare the result with the [application screenshots](#-application-screenshots).
+
+Use the [web instructions](#-run-on-the-web) to test in a PC browser or the [mobile instructions](#-run-on-a-mobile-device) to test on a phone.
+
+## 📥 Run the Existing Repository
+
+Use this shorter path if you want to run the completed project instead of building it yourself.
 
 ### 1. Clone the repository
 
 ```powershell
 git clone https://github.com/Lagmouchyoussef/react-native-navigation-architecture.git
-cd .\react-native-navigation-architecture
+cd .\react-native-navigation-architecture\Increment
 ```
 
-If you already have the project, open its repository folder instead.
-
-### 2. Open the Expo application folder
-
-From the repository root:
-
-```powershell
-cd .\Increment
-```
-
-### 3. Install the locked dependencies
+### 2. Install the locked dependencies
 
 ```powershell
 npm ci
-```
-
-Check that installed native modules match the Expo SDK:
-
-```powershell
 npx expo install --check
 ```
+
+Continue with [Run on the Web](#-run-on-the-web) or [Run on a Mobile Device](#-run-on-a-mobile-device).
 
 ## 🌐 Run on the Web
 
