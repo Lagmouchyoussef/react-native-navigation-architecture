@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import DetailsExerciceScreen from '../screens/DetailsExerciceScreen';
+import ExerciseDetailsScreen from '../screens/ExerciseDetailsScreen';
 import MainTabs from '../navigation/MainTabs';
 
 const Stack = createNativeStackNavigator();
@@ -20,9 +20,9 @@ export default function App() {
             options={{ headerShown: false }}
           />
           <Stack.Screen
-            name="DetailsExercice"
-            component={DetailsExerciceScreen}
-            options={{ title: "Détail de l'exercice" }}
+            name="ExerciseDetails"
+            component={ExerciseDetailsScreen}
+            options={{ title: 'Exercise Details' }}
           />
         </Stack.Navigator>
       </NavigationContainer>

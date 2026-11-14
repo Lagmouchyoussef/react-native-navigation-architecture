@@ -1,10 +1,9 @@
 <div align="center">
 
-# 🏋️ Increment
+<h1>🏋️ Increment</h1>
 
-### Application mobile de démonstration — React Native & React Navigation
-
-Un exemple clair de navigation par onglets et par pile, avec transmission de paramètres entre écrans.
+<p><strong>A cross-platform React Native navigation demo</strong></p>
+<p>Explore bottom-tab navigation, a native stack, and route-parameter passing in one compact app.</p>
 
 <p>
   <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-ES6%2B-F7DF1E?style=for-the-badge&logo=javascript&logoColor=111111">
@@ -13,197 +12,233 @@ Un exemple clair de navigation par onglets et par pile, avec transmission de par
   <img alt="React Navigation" src="https://img.shields.io/badge/React_Navigation-v7-6B53C3?style=for-the-badge">
 </p>
 <p>
-  <img alt="iOS" src="https://img.shields.io/badge/iOS-compatible-000000?style=flat-square&logo=apple&logoColor=white">
-  <img alt="Android" src="https://img.shields.io/badge/Android-compatible-3DDC84?style=flat-square&logo=android&logoColor=white">
-  <img alt="Web" src="https://img.shields.io/badge/Web-compatible-4285F4?style=flat-square&logo=googlechrome&logoColor=white">
+  <img alt="iOS" src="https://img.shields.io/badge/iOS-supported-000000?style=flat-square&logo=apple&logoColor=white">
+  <img alt="Android" src="https://img.shields.io/badge/Android-supported-3DDC84?style=flat-square&logo=android&logoColor=white">
+  <img alt="Web" src="https://img.shields.io/badge/Web-supported-4285F4?style=flat-square&logo=googlechrome&logoColor=white">
 </p>
 
 </div>
 
 ---
 
-## 📌 Sommaire
+## 📚 Table of Contents
 
-- [Présentation](#-présentation)
-- [Fonctionnalités](#-fonctionnalités)
-- [Captures d’écran](#-captures-décran)
-- [Prérequis](#-prérequis)
-- [Installation de A à Z](#-installation-de-a-à-z)
-- [Lancer sur PC](#-lancer-sur-pc)
-- [Lancer sur un téléphone](#-lancer-sur-un-téléphone)
-- [Architecture et navigation](#-architecture-et-navigation)
-- [Vérification du projet](#-vérification-du-projet)
-- [Dépannage](#-dépannage)
+- [Overview](#-overview)
+- [Features](#-features)
+- [Application Screenshots](#-application-screenshots)
+- [Technology Stack](#-technology-stack)
+- [Prerequisites](#-prerequisites)
+- [Getting Started](#-getting-started)
+- [Run on the Web](#-run-on-the-web)
+- [Run on a Mobile Device](#-run-on-a-mobile-device)
+- [Project Structure](#-project-structure)
+- [Navigation Flow](#-navigation-flow)
+- [Validation](#-validation)
+- [Troubleshooting](#-troubleshooting)
 
-## 🎯 Présentation
+## 🎯 Overview
 
-**Increment** est une petite application de suivi d’entraînement réalisée avec React Native et Expo. Elle sert de démonstration pratique de **React Navigation** : un navigateur inférieur permet de passer entre trois sections, et un navigateur en pile ouvre l’écran de détail d’un exercice.
+**Increment** is a small workout-tracking app built with React Native and Expo. It demonstrates a practical React Navigation setup: a bottom tab navigator switches between the main sections, while a native stack navigator opens an exercise detail screen and passes route parameters.
 
-Le projet Expo se trouve dans le dossier `Increment/`. Les écrans et le navigateur d’onglets se trouvent à la racine du dépôt ; la configuration Metro les rend accessibles au projet Expo.
+The Expo application lives in `Increment/`. Application screens and tab navigation are stored at the repository root and are included in Metro's watch folders.
 
-## ✨ Fonctionnalités
+## ✨ Features
 
-| Écran | Description |
+| Screen | Purpose |
 |---|---|
-| **Journal** | Affiche le journal d’entraînement et un bouton pour ouvrir l’exercice « Squat ». |
-| **Mes routines** | Présente l’onglet des routines. |
-| **Profil** | Présente l’onglet du profil. |
-| **Détail de l’exercice** | Affiche le nom et l’identifiant reçus depuis le journal, avec un bouton de retour. |
+| **Workout Log** | Displays the workout log and opens the sample Squat exercise. |
+| **My Routines** | Demonstrates the routines tab. |
+| **Profile** | Demonstrates the profile tab. |
+| **Exercise Details** | Displays the exercise name and ID passed from the workout log. |
 
-## 🖼️ Captures d’écran
+## 🖼️ Application Screenshots
 
-Ces captures montrent les écrans réellement exécutés dans le navigateur. Les mêmes composants React Native sont utilisés par les cibles mobile et web.
+The screenshots below are captured from the running web build. The same React Native screens are shared with the mobile targets.
 
 <table>
   <tr>
-    <td align="center"><strong>1. Journal</strong><br><img src="./docs/images/journal.png" alt="Écran Journal et bouton Voir un exercice" width="520"></td>
-    <td align="center"><strong>2. Mes routines</strong><br><img src="./docs/images/routines.png" alt="Onglet Mes routines" width="520"></td>
+    <td align="center"><strong>1. Workout Log</strong><br><img src="./docs/images/workout-log.png" alt="Workout Log screen with the View exercise button" width="520"></td>
+    <td align="center"><strong>2. My Routines</strong><br><img src="./docs/images/routines.png" alt="My Routines tab" width="520"></td>
   </tr>
   <tr>
-    <td align="center"><strong>3. Profil</strong><br><img src="./docs/images/profil.png" alt="Onglet Profil" width="520"></td>
-    <td align="center"><strong>4. Détail de l’exercice</strong><br><img src="./docs/images/details-exercice.png" alt="Détail de l’exercice Squat avec son identifiant" width="520"></td>
+    <td align="center"><strong>3. Profile</strong><br><img src="./docs/images/profile.png" alt="Profile tab" width="520"></td>
+    <td align="center"><strong>4. Exercise Details</strong><br><img src="./docs/images/exercise-details.png" alt="Squat exercise details and exercise ID" width="520"></td>
   </tr>
 </table>
 
-## 🧰 Prérequis
+## 🧩 Technology Stack
 
-Installez les outils suivants :
+| Technology | Role |
+|---|---|
+| [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) | Application language |
+| [React Native](https://reactnative.dev/) | Cross-platform user interface |
+| [Expo](https://expo.dev/) | Development server and app tooling |
+| [React Navigation](https://reactnavigation.org/) | Bottom tabs and native stack |
+| [React Native Web](https://necolas.github.io/react-native-web/) | Web platform support |
+| [Safe Area Context](https://github.com/th3rdwave/react-native-safe-area-context) | Safe-area handling on mobile |
+| [Expo Status Bar](https://docs.expo.dev/versions/latest/sdk/status-bar/) | Status bar configuration |
 
-- **Node.js** (version LTS recommandée) et **npm** ;
-- **Git**, si vous clonez le dépôt ;
-- un navigateur récent pour lancer la version PC ;
-- **Expo Go** sur votre iPhone ou appareil Android pour tester sur un téléphone.
+## 🧰 Prerequisites
 
-> **Important :** les commandes npm doivent être lancées depuis `Increment/`, car c’est là que se trouvent `package.json` et `package-lock.json`.
+Install the following before starting:
 
-## 🚀 Installation de A à Z
+- **Node.js** (the current LTS release is recommended) and **npm**;
+- **Git**, if you plan to clone the repository;
+- a modern browser for the web build;
+- **Expo Go** on an iPhone or Android device for on-device testing.
 
-### 1. Récupérer le projet
+> **Important:** run all npm and Expo commands from `Increment/`, where `package.json` and `package-lock.json` are located.
 
-Clonez le dépôt, ou ouvrez le dossier du projet déjà présent sur votre PC :
+## 🚀 Getting Started
+
+### 1. Clone the repository
 
 ```powershell
 git clone https://github.com/Lagmouchyoussef/react-native-navigation-architecture.git
 cd .\react-native-navigation-architecture
 ```
 
-### 2. Entrer dans le projet Expo
+If you already have the project, open its repository folder instead.
 
-Depuis la racine du dépôt :
+### 2. Open the Expo application folder
+
+From the repository root:
 
 ```powershell
 cd .\Increment
 ```
 
-### 3. Installer les dépendances
+### 3. Install the locked dependencies
 
 ```powershell
 npm ci
 ```
 
-`npm ci` installe les versions enregistrées dans `package-lock.json`. Pour contrôler leur compatibilité avec Expo :
+Check that installed native modules match the Expo SDK:
 
 ```powershell
 npx expo install --check
 ```
 
-## 💻 Lancer sur PC
+## 🌐 Run on the Web
 
-Depuis `Increment/`, démarrez la version web :
+Start the web development server from `Increment/`:
 
 ```powershell
 npm run web
 ```
 
-Expo affiche l’adresse locale à ouvrir dans le navigateur, généralement `http://localhost:8081`. Si le port est déjà utilisé, choisissez-en un autre :
+Open the URL printed in the terminal. Expo commonly uses `http://localhost:8081`. If that port is already occupied, use another one:
 
 ```powershell
 npx expo start --web --port 8082
 ```
 
-Ouvrez ensuite l’adresse indiquée dans le terminal. **`localhost` désigne le PC lui-même** : cette adresse ne doit pas être utilisée depuis un téléphone.
+`localhost` refers to the current computer. A phone cannot use the computer's `localhost` address.
 
-## 📱 Lancer sur un téléphone
+## 📱 Run on a Mobile Device
 
-### iPhone ou Android avec Expo Go
+### iPhone or Android with Expo Go
 
-1. Installez ou mettez à jour **Expo Go** depuis l’App Store ou Google Play.
-2. Dans `Increment/`, lancez Expo :
+1. Install or update **Expo Go** from the App Store or Google Play.
+2. From `Increment/`, start Expo:
 
    ```powershell
    npm start
    ```
 
-3. Attendez l’affichage du QR code dans le terminal ou dans la page Expo.
-4. Scannez-le avec l’application **Expo Go**.
-5. Gardez le serveur Expo ouvert pendant l’utilisation de l’application.
+3. Wait for the QR code in the terminal or Expo's development page.
+4. Scan the QR code with Expo Go.
+5. Keep the Expo server running while using the app.
 
-En mode réseau local, le PC et le téléphone doivent être connectés au même Wi-Fi. Si le réseau bloque cette connexion, essayez le tunnel Expo :
+For LAN mode, the computer and phone must be on the same Wi-Fi network. If the network blocks local device connections, start an Expo tunnel:
 
 ```powershell
 npx expo start --tunnel
 ```
 
-Scannez ensuite le nouveau QR code. Le tunnel nécessite une connexion Internet et peut être indisponible sur certains réseaux.
+Scan the refreshed QR code. Tunnels require an active internet connection and may be restricted by some networks.
 
-### Limite iOS sous Windows
+### iOS on Windows
 
-Windows ne peut pas lancer le simulateur iOS de Xcode ni compiler localement une application iOS native. Pour tester sur iPhone, utilisez **Expo Go**. Le simulateur iOS et les compilations locales demandent macOS et Xcode.
+Windows cannot run Apple's iOS Simulator or perform a local Xcode build. Use **Expo Go on an iPhone** to test from Windows. The iOS Simulator and local native builds require macOS and Xcode.
 
-### Android
+### Android Emulator
 
-Pour ouvrir l’application sur un émulateur Android configuré avec Android Studio :
+To launch on an Android emulator configured with Android Studio:
 
 ```powershell
 npm run android
 ```
 
-Vous pouvez aussi scanner le QR code avec Expo Go sur un appareil Android.
+Expo Go on a physical Android device is also supported.
 
-## 🧭 Architecture et navigation
+## 🗂️ Project Structure
+
+```text
+react-native-navigation-architecture/
+├── Increment/
+│   ├── App.js
+│   ├── app.json
+│   ├── index.js
+│   ├── metro.config.js
+│   └── package.json
+├── navigation/
+│   └── MainTabs.js
+├── screens/
+│   ├── ExerciseDetailsScreen.js
+│   ├── ProfileScreen.js
+│   ├── RoutinesScreen.js
+│   └── WorkoutLogScreen.js
+├── docs/
+│   └── images/
+└── README.md
+```
+
+### Key Files
+
+| Path | Responsibility |
+|---|---|
+| `Increment/App.js` | Root providers and native stack routes |
+| `Increment/index.js` | Registers the Expo root component |
+| `Increment/app.json` | Expo app metadata, orientation, and assets |
+| `Increment/metro.config.js` | Adds the repository source folders to Metro's watch list |
+| `Increment/package.json` | Dependencies and npm scripts |
+| `navigation/MainTabs.js` | Declares the Workout Log, My Routines, and Profile tabs |
+| `screens/WorkoutLogScreen.js` | Workout log screen and exercise navigation action |
+| `screens/RoutinesScreen.js` | My Routines screen |
+| `screens/ProfileScreen.js` | Profile screen |
+| `screens/ExerciseDetailsScreen.js` | Exercise details and route parameter rendering |
+| `docs/images/` | README screenshots |
+
+## 🧭 Navigation Flow
 
 ```mermaid
 flowchart TD
     A["Increment/App.js"] --> B["NavigationContainer"]
-    B --> C["Pile native"]
+    B --> C["Native Stack"]
     C --> D["MainTabs"]
-    D --> E["Journal"]
-    D --> F["Mes routines"]
-    D --> G["Profil"]
-    E -->|"Voir un exercice + paramètres"| H["Détail de l’exercice"]
-    H -->|"Retour"| D
+    D --> E["Workout Log"]
+    D --> F["My Routines"]
+    D --> G["Profile"]
+    E -->|"View exercise + route parameters"| H["Exercise Details"]
+    H -->|"Back"| D
 ```
 
-Depuis le journal, l’application transmet les paramètres de l’exercice à la route `DetailsExercice` :
+The workout log opens the detail route and passes an exercise ID and name:
 
 ```js
-navigation.navigate('DetailsExercice', {
-  exerciceId: 12,
-  nom: 'Squat',
+navigation.navigate('ExerciseDetails', {
+  exerciseId: 12,
+  exerciseName: 'Squat',
 });
 ```
 
-L’écran de détail lit ces paramètres dans `route.params` et affiche leur valeur. Il prévoit également une valeur de remplacement si un paramètre n’est pas fourni.
+`ExerciseDetailsScreen` reads these values from `route.params` and provides fallback text when a value is missing.
 
-### Fichiers principaux
+## ✅ Validation
 
-| Chemin | Rôle |
-|---|---|
-| `Increment/App.js` | Point d’entrée ; configure la zone de sécurité, la barre d’état et le navigateur en pile. |
-| `Increment/index.js` | Enregistre le composant racine auprès d’Expo. |
-| `Increment/app.json` | Nom, orientation, icône et paramètres de l’application Expo. |
-| `Increment/metro.config.js` | Permet à Metro de surveiller les dossiers source situés à la racine du dépôt. |
-| `Increment/package.json` | Dépendances et commandes npm. |
-| `navigation/MainTabs.js` | Déclare les onglets Journal, Mes routines et Profil. |
-| `screens/JournalScreen.js` | Écran d’accueil et navigation vers l’exercice. |
-| `screens/RoutinesScreen.js` | Écran Mes routines. |
-| `screens/ProfilScreen.js` | Écran Profil. |
-| `screens/DetailsExerciceScreen.js` | Écran de détail et lecture des paramètres de route. |
-| `docs/images/` | Captures d’écran intégrées à ce README. |
-
-## ✅ Vérification du projet
-
-Depuis `Increment/`, les commandes suivantes contrôlent les dépendances et génèrent les bundles web et iOS :
+Run these checks from `Increment/`:
 
 ```powershell
 npx expo install --check
@@ -211,31 +246,22 @@ npx expo export --platform web
 npx expo export --platform ios
 ```
 
-> L’export iOS vérifie le bundle JavaScript destiné à iOS ; ce n’est pas une compilation native Xcode.
+The iOS export validates the JavaScript bundle for iOS; it is **not** a native Xcode build.
 
-## 🛠️ Dépannage
+## 🛠️ Troubleshooting
 
-| Problème | Solution |
+| Issue | Resolution |
 |---|---|
-| `package.json` introuvable | Placez-vous dans le dossier du dépôt, puis exécutez `cd .\Increment`. |
-| Le port Expo est déjà utilisé | Utilisez un autre port, par exemple `npx expo start --web --port 8082`. |
-| Le téléphone n’arrive pas à joindre le serveur | N’utilisez pas `localhost` sur le téléphone. Essayez le même Wi-Fi, puis `npx expo start --tunnel`. |
-| Expo Go indique une incompatibilité | Mettez Expo Go à jour, redémarrez Expo et contrôlez les dépendances avec `npx expo install --check`. |
-| Un module est introuvable | Vérifiez que vous êtes dans `Increment/`, puis relancez `npm ci`. |
-| Le simulateur iOS ne démarre pas sous Windows | C’est attendu : utilisez Expo Go sur iPhone ou un Mac avec Xcode. |
-| Le tunnel se déconnecte | Vérifiez la connexion Internet, relancez `npx expo start --tunnel` et scannez le QR code actualisé. |
-
-## 📦 Technologies
-
-- **JavaScript** — langage de l’application ;
-- **React Native** — composants d’interface multiplateforme ;
-- **Expo** — démarrage et export de l’application ;
-- **React Navigation** — navigation en onglets et en pile ;
-- **React Native Web** — exécution dans un navigateur ;
-- **Safe Area Context** et **Expo Status Bar** — intégration de l’interface aux écrans mobiles.
+| `package.json` cannot be found | Change to the repository root, then run `cd .\Increment`. |
+| The Expo port is already in use | Select another port, for example `npx expo start --web --port 8082`. |
+| The phone cannot reach the development server | Do not use `localhost` on the phone. Try the same Wi-Fi network, then `npx expo start --tunnel`. |
+| Expo Go reports an SDK mismatch | Update Expo Go, restart the server, and run `npx expo install --check`. |
+| A module cannot be resolved | Confirm the terminal is in `Increment/`, then run `npm ci`. |
+| The iOS Simulator will not start on Windows | This is expected. Use Expo Go on an iPhone or a Mac with Xcode. |
+| The Expo tunnel disconnects | Check internet access, restart `npx expo start --tunnel`, and scan the new QR code. |
 
 ---
 
 <div align="center">
-  Réalisé dans le cadre du TP React Navigation · <strong>Increment</strong>
+  Built with React Native, Expo, and React Navigation.
 </div>

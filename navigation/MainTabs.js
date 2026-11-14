@@ -1,21 +1,25 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import JournalScreen from '../screens/JournalScreen';
+import WorkoutLogScreen from '../screens/WorkoutLogScreen';
 import RoutinesScreen from '../screens/RoutinesScreen';
-import ProfilScreen from '../screens/ProfilScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 
 const Tab = createBottomTabNavigator();
 
 export default function MainTabs() {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Journal" component={JournalScreen} />
-      <Tab.Screen 
-        name="Routines" 
-        component={RoutinesScreen} 
-        options={{ title: 'Mes routines' }} 
+      <Tab.Screen
+        name="WorkoutLog"
+        component={WorkoutLogScreen}
+        options={{ title: 'Workout Log' }}
       />
-      <Tab.Screen name="Profil" component={ProfilScreen} />
+      <Tab.Screen
+        name="Routines"
+        component={RoutinesScreen}
+        options={{ title: 'My Routines' }}
+      />
+      <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
   );
 }
